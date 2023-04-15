@@ -3,7 +3,7 @@ import { ChatOpenAI } from "langchain/chat_models";
 import { BufferMemory } from "langchain/memory";
 import { Configuration } from "openai";
 import { OpenAIApi } from "openai";
-import { googleTool } from "./tools/google";
+// import { googleTool } from "./tools/google";
 
 const openAIApiKey = process.env.OPENAI_API_KEY!;
 
@@ -13,7 +13,7 @@ const params = {
   openAIApiKey,
   modelName: process.env.OPENAI_MODEL ?? "gpt-4",
   maxConcurrency: 1,
-  maxTokens: 1000,
+  maxTokens: 300,
   maxRetries: 5,
 };
 
@@ -28,7 +28,7 @@ export class Model {
       apiKey: openAIApiKey,
     });
 
-    this.tools = [googleTool];
+    this.tools = [];
     this.openai = new OpenAIApi(configuration);
     this.model = new ChatOpenAI(params, configuration);
   }

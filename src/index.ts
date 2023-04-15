@@ -4,7 +4,7 @@ dotenv.config();
 import { Telegraf } from "telegraf";
 import { downloadVoiceFile } from "./lib/downloadVoiceFile";
 import { postToWhisper } from "./lib/postToWhisper";
-import { textToSpeech } from "./lib/htApi";
+import { textToSpeech } from "./lib/azureTTS";
 import { createReadStream, existsSync, mkdirSync } from "fs";
 import { Model as ChatModel } from "./models/chat";
 import { Model as ChatWithTools } from "./models/chatWithTools";
@@ -13,7 +13,7 @@ const workDir = "./tmp";
 const telegramToken = process.env.TELEGRAM_TOKEN!;
 
 const bot = new Telegraf(telegramToken);
-let model = new ChatWithTools();
+let model = new ChatModel();
 
 if (!existsSync(workDir)) {
   mkdirSync(workDir);
